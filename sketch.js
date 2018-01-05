@@ -5,18 +5,24 @@ function setup() {
     createCanvas(windowWidth,windowHeight);
     gravity = createVector(0,height*0.0005);
 
-    for (let i = 1; i<=10; i++) {
-    	fireworks.push(new Firework());
-    }
 }
 
 function draw() {
     background(100);
     stroke(255);
     strokeWeight(40);
+
+    fireworks.push(new Firework());
+
     for (firework of fireworks) {
     	firework.update();
     	firework.draw();
+    }
+
+    for (i = fireworks.length - 1; i >= 0; i--) {
+    	if(fireworks[i].firework.offscreen()) {
+    		fireworks.splice(i, 1);
+    	}
     }
 }
 
@@ -49,9 +55,15 @@ function Particle(x, y, mass = 10) {
 		point(this.position.x, this.position.y);
 	}
 
+	this.offscreen = function() {
+		return (this.position.y > height + this.mass);
+	}
+
 	this.update = function() {
 		this.velocity.add(this.acceleration);
 		this.position.add(this.velocity);
 		this.acceleration.mult(0);
 	}
+
+	
 }
