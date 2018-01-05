@@ -3,7 +3,8 @@ var gravity;
 
 function setup() {
     createCanvas(windowWidth,windowHeight);
-    gravity = createVector(0,1);
+    gravity = createVector(0,height*0.0005);
+
     for (let i = 1; i<=10; i++) {
     	fireworks.push(new Firework());
     }
@@ -20,7 +21,8 @@ function draw() {
 }
 
 function Firework() {
-	this.firework = new Particle (random(width),random(height),random(10,15));
+	this.firework = new Particle (random(width),height, 4);
+	this.firework.velocity = createVector(0,-height*random(0.025,0.03));
 
 	this.draw = function() {
 		this.firework.draw();
