@@ -71,7 +71,7 @@ function Firework() {
 			this.exploded = true;
 		}
 		for(let i = this.effects.length - 1; i>=0; i--) {
-			this.effects[i].lifespan -= 1;
+			this.effects[i].lifespan -= 3;
 			if(this.effects[i].lifespan <=0){
 				this.effects.splice(i, 1);
 			} else {
@@ -88,7 +88,7 @@ function Particle(x, y, mass = 1, colour = 100) {
 	this.velocity = createVector(0, 0);
 	this.acceleration = createVector(0, 0);
 	this.mass = mass;
-	this.lifespan = 100;
+	this.lifespan = 255;
 	this.colour = colour;
 	this.saturation = 100;
 
