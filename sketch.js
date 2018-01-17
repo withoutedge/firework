@@ -1,8 +1,14 @@
+var functionality = {
+	resizeToMouse: true,
+
+}
 var fireworks = [];
 var gravity;
 
 
 function setup() {
+    //For each item in functionality, create tick box with name.
+
     createCanvas(windowWidth,windowHeight);
     gravity = createVector(0, height*0.00007);
 	
@@ -12,7 +18,7 @@ function setup() {
 function draw() {
     background(0, 100, 0, 50);
     
-    if(random()<0.3) {
+    if(random()<0.1) {
  	   fireworks.push(new Firework());
 	}
 
@@ -60,12 +66,12 @@ function Firework() {
 	this.update = function() {
 		this.firework.applyForce(gravity);
 		this.firework.update();
-		if(this.exploded == false && this.firework.velocity.y >= -4) {
+		if(this.exploded == false && this.firework.velocity.y > -4) {
 			this.explode();
 			this.exploded = true;
 		}
 		for(let i = this.effects.length - 1; i>=0; i--) {
-			this.effects[i].lifespan -= 2;
+			this.effects[i].lifespan -= 1;
 			if(this.effects[i].lifespan <=0){
 				this.effects.splice(i, 1);
 			} else {
